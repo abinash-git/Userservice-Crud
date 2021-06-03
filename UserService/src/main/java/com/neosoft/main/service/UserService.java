@@ -15,6 +15,6 @@ public interface UserService {
 	public List<User> findAllUser();
 	public void softDeleteUserById(Long id);
 	public void hardDeleteUserById(Long id);
-	public User findOne(long id);
+	public User findOne(Long id);
 
 }

@@ -1,7 +1,6 @@
 package com.neosoft.main.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -95,7 +94,7 @@ public class UserServiceImpl implements UserService {
 		userRepository.deleteById(id);
 	}
 
-	public User findOne(long id) {
+	public User findOne(Long id) {
 		return userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
 	}
