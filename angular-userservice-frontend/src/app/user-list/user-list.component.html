@@ -1,0 +1,42 @@
+<h2> User List</h2>
+<nav class="navbar">
+    <input class="form-control" type="text" name="firstName" [(ngModel)]="firstName" (ngModelChange)="search()"
+    placeholder="Enter First Name to Search"> 
+</nav>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th (click)="sort('userId')" >User Id&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('firstName')" >First Name&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('surname')" >Last Name&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('gender')" >Gender&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('dob')" >Dob&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('joiningDate')" >Joining Date&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('email')" >Email&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('mobile')" >Mobile&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('pin')" >Pin&nbsp;<i class="fa fa-sort"></i> </th>
+            <th (click)="sort('deleted')" >Deleted&nbsp;<i class="fa fa-sort"></i> </th>
+            <th> Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let user of users | orderBy: key: reverse | paginate : {itemsPerPage:5,currentPage:p};">
+            <td> {{ user.userId }}</td>
+            <td> {{ user.firstName }}</td>
+            <td> {{ user.surname }}</td>
+            <td> {{ user.gender }}</td>
+            <td> {{ user.dob }}</td>
+            <td> {{ user.joiningDate }}</td>
+            <td> {{ user.email }}</td>
+            <td> {{ user.mobile }}</td>
+            <td> {{ user.pin }}</td>
+            <td> {{ user.deleted }}</td>
+            <td>
+                <button (click)="deleteUser(user.userId)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button (click)="updateUser(user.userId)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                <button (click)="userDetails(user.userId)" class="btn btn-info" style="margin-left: 10px">View</button>
+            </td>
+        </tr>   
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
